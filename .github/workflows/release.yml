@@ -85,5 +85,5 @@ jobs:
                 chart_map_version[$chart]=$(helm show chart ./charts/$chart | yq .version)
                 echo $chart ${chart_map_version[$chart]}
                 helm package ./charts/${chart}
-                helm push ${chart}-${chart_map_version[$chart]}.tgz oci://ghcr.io/mks/${{ github.repository_owner }}
+                helm push ${chart}-${chart_map_version[$chart]}.tgz oci://ghcr.io/${{ github.repository_owner }}/mks
               done
