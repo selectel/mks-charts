@@ -10,4 +10,4 @@ helm install myrelease oci://ghcr.io/selectel/ingress-nginx:4.12.1
 Building of helm charts is done through GitHub Actions. 
 [release.yaml](https://github.com/selectel/mks-charts/blob/main/.github/workflows/release.yml) detects changes and collects the chart in [packages](https://github.com/orgs/selectel/packages?repo_name=mks-charts).
 
-To create a new helm chart: run the new chart in the main folder of . /charts and create an app-name/chart-version tag.
+To create a new helm chart: push the new chart to main branch in . /charts folder and create an app-name/chart-version tag.
