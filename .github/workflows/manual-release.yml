@@ -1,0 +1,38 @@
+name: Manual build and publish Helm Charts to GHCR
+
+on:
+  workflow_dispatch:
+    inputs:
+      chartName:
+        description: 'Chart name'
+        required: true
+        type: string
+
+jobs:
+  publish-helm-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v4.3.1
+        with:
+          version: '3.18.3'
+
+      - name: Setup yq
+        uses: mikefarah/yq@v4.47.1
+
+      - name: Package Helm charts and push to GHCR
+        run: |
+          echo ${{ inputs.chartName }} ${{ inputs.chartVersion }}
+          helm package ./charts/${{ inputs.chartName }}
+          chartVersion=$(helm show chart ./charts/${{ inputs.chartName }} | yq .version)
+          helm push ${{ inputs.chartName }}-${chartVersion}.tgz oci://ghcr.io/${{ github.repository_owner }}/mks
