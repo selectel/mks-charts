@@ -35,4 +35,4 @@ jobs:
           echo ${{ inputs.chartName }} ${{ inputs.chartVersion }}
           helm package ./charts/${{ inputs.chartName }}
           chartVersion=$(helm show chart ./charts/${{ inputs.chartName }} | yq .version)
-          helm push ${{ inputs.chartName }}-${chartVersion}.tgz oci://ghcr.io/${{ github.repository_owner }}/mks
+          helm push ${{ inputs.chartName }}-${chartVersion}.tgz oci://ghcr.io/${{ github.repository_owner }}/mks-charts
