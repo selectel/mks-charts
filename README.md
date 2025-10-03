@@ -2,7 +2,7 @@
 
 This repository is used to install [applications](https://docs.selectel.ru/managed-kubernetes/clusters/applications/) in Managed Kubernetes. You can install or update helm charts directly through this repository. For example:
 ```bash
-helm install myrelease oci://ghcr.io/selectel/mks/ingress-nginx:4.12.1
+helm install myrelease oci://ghcr.io/selectel/mks-charts/ingress-nginx:4.12.1
 ```
 
 # CI/CD
