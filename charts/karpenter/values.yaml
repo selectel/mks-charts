@@ -30,6 +30,9 @@ podLabels: {}
 podDisruptionBudget:
   minAvailable: 1
 
+# -- PriorityClass name for the pod.
+priorityClassName: system-cluster-critical
+
 controller:
   replicaCount: 2
   revisionHistoryLimit: 10

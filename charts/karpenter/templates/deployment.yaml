@@ -32,6 +32,9 @@ spec:
         {{- end }}
     spec:
       serviceAccountName: {{ include "karpenter.serviceAccountName" . }}
+      {{- with .Values.priorityClassName }}
+      priorityClassName: {{ . | quote }}
+      {{- end }}
       {{- with .Values.controller.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ . }}
       {{- end }}
