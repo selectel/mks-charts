@@ -59,18 +59,21 @@ spec:
                       type: string
                     type: array
                   sizeGiB:
+                    default: 30
                     description: 'SizeGiB is the size of the system disk. Unit: GiB'
                     format: int32
                     type: integer
                     x-kubernetes-validations:
                     - message: size invalid
-                      rule: self >= 10
+                      rule: self >= 20
                 type: object
               userData:
                 description: |-
                   UserData is applied to the provisioned nodes.
                   Karpenter may merge or modify this UserData to ensure correct node configuration.
                 type: string
+            required:
+            - disk
             type: object
           status:
             description: SelectelNodeClassStatus contains the resolved state of the
