@@ -75,7 +75,7 @@ controller:
   tolerations: []
   settings:
     # -- The VM memory overhead as a percent that will be subtracted from the total memory for all instance types. The value of `0.075` equals to 7.5%.
-    vmMemoryOverheadPercent: 0.065
+    vmMemoryOverheadPercent: 0.075
     # -- The maximum length of a batch window. The longer this is, the more pods we can consider for provisioning at one
     # time which usually results in fewer but larger nodes.
     batchMaxDuration: 10s
