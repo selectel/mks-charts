@@ -11,10 +11,10 @@ global:
   images:
     envoyGateway:
       # This is the full image name including the hub, repo, and tag.
-      image: ${GatewayImage}
+      image: docker.io/envoyproxy/gateway:v1.7.1
       # Specify image pull policy if default behavior isn't desired.
       # Default behavior: latest images will be Always else IfNotPresent.
-      pullPolicy: ${GatewayImagePullPolicy}
+      pullPolicy: IfNotPresent
       # List of secrets in the same namespace of the component that can be used to pull images from private repositories.
       pullSecrets: []
     ratelimit:
