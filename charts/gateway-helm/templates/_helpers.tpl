@@ -1,11 +1,4 @@
 {{/*
-Allow the release namespace to be overridden.
-*/}}
-{{- define "eg.namespace" -}}
-{{- default .Release.Namespace .Values.namespaceOverride | trunc 63 | trimSuffix "-" -}}
-{{- end }}
-
-{{/*
 Expand the name of the chart.
 */}}
 {{- define "eg.name" -}}
@@ -47,9 +40,6 @@ helm.sh/chart: {{ include "eg.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- with .Values.commonLabels }}
-{{ toYaml . }}
-{{- end }}
 {{- end }}
 
 {{/*

@@ -66,6 +66,7 @@ spec:
                           "credential", and the value should be the credential to be injected.
                           For example, for basic authentication, the value should be "Basic <base64 encoded username:password>".
                           for bearer token, the value should be "Bearer <token>".
+                          Note: The secret must be in the same namespace as the HTTPRouteFilter.
                         properties:
                           group:
                             default: ""
@@ -127,9 +128,7 @@ spec:
                   return a fixed response.
                 properties:
                   body:
-                    description: |-
-                      Body of the direct response.
-                      Supports Envoy command operators for dynamic content (see https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage#command-operators).
+                    description: Body of the direct response.
                     properties:
                       inline:
                         description: Inline contains the value as an inline string.
@@ -237,14 +236,8 @@ spec:
                               pattern: ^[A-Za-z0-9!#$%&'*+\-.^_\x60|~]+$
                               type: string
                             value:
-                              description: |-
-                                Value is the value of HTTP Header to be matched.
-                                <gateway:experimental:description>
-                                Must consist of printable US-ASCII characters, optionally separated
-                                by single tabs or spaces. See: https://tools.ietf.org/html/rfc7230#section-3.2
-                                </gateway:experimental:description>
-
-                                <gateway:experimental:validation:Pattern=`^[!-~]+([\t ]?[!-~]+)*$`>
+                              description: Value is the value of HTTP Header to be
+                                matched.
                               maxLength: 4096
                               minLength: 1
                               type: string
@@ -317,14 +310,8 @@ spec:
                               pattern: ^[A-Za-z0-9!#$%&'*+\-.^_\x60|~]+$
                               type: string
                             value:
-                              description: |-
-                                Value is the value of HTTP Header to be matched.
-                                <gateway:experimental:description>
-                                Must consist of printable US-ASCII characters, optionally separated
-                                by single tabs or spaces. See: https://tools.ietf.org/html/rfc7230#section-3.2
-                                </gateway:experimental:description>
-
-                                <gateway:experimental:validation:Pattern=`^[!-~]+([\t ]?[!-~]+)*$`>
+                              description: Value is the value of HTTP Header to be
+                                matched.
                               maxLength: 4096
                               minLength: 1
                               type: string
@@ -399,12 +386,6 @@ spec:
                 description: HTTPURLRewriteFilter define rewrites of HTTP URL components
                   such as path and host
                 properties:
-                  appendXForwardedHost:
-                    description: |-
-                      AppendXForwardedHost controls whether the original Host header value is
-                      appended to the X-Forwarded-Host header when hostname rewriting is configured.
-                      Defaults to true for backward compatibility.
-                    type: boolean
                   hostname:
                     description: |-
                       Hostname is the value to be used to replace the Host header value during
