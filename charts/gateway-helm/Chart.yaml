@@ -3,8 +3,8 @@ name: gateway-helm
 description: The Helm chart for Envoy Gateway
 type: application
 
-version: 1.7.1-test
-appVersion: 1.7.1-test
+version: 1.7.1
+appVersion: 1.7.1
 icon: https://raw.githubusercontent.com/envoyproxy/gateway/main/site/assets/icons/logo.svg
 
 maintainers:
