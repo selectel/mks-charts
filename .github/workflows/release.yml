@@ -2,8 +2,6 @@ name: Publish Helm Chart to GHCR
 
 on:
   push:
-    branches:
-      - main
     tags: 
       - '**/**'
     paths:
@@ -32,7 +30,7 @@ jobs:
         id: get-charts
         run: |
           cd charts
-          files_changed="$(git show --pretty="" --name-only)"
+          files_changed="$(git diff --name-only HEAD~ HEAD)"
           echo "files_changed:"
           echo "$files_changed"
           charts_changed=($(echo "$files_changed" | xargs dirname | grep -o "charts/[^/]*" | sed "s/charts\///g" | sort | uniq || true))
@@ -43,7 +41,7 @@ jobs:
               echo "List of changed charts, go to publish job:"
               for chart in "${charts_changed[@]}"
                   do
-                    echo $chart $(helm show chart ./charts/$chart | yq .version)
+                    echo $chart $(helm show chart ./$chart | yq .version)
                   done
               # Join array elements with a comma
               joined_string=$(IFS=,; echo "${charts_changed[*]}")
