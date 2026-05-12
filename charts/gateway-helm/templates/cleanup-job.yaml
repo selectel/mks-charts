@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: gateway-cleanup
+  name: '{{ .Release.Name }}-gateway-cleanup'
   annotations:
     "helm.sh/hook": pre-delete
     "helm.sh/hook-delete-policy": hook-succeeded
@@ -10,7 +10,7 @@ metadata:
 spec:
   template:
     spec:
-      serviceAccountName: gateway-cleanup
+      serviceAccountName: '{{ .Release.Name }}-gateway-cleanup'
       restartPolicy: Never
       containers:
         - name: cleanup
@@ -21,4 +21,4 @@ spec:
             - |
               echo "Deleting gateways..."
 
-              kubectl -n {{ .Release.Namespace }} delete gateways.gateway.networking.k8s.io eg-gw
+              kubectl -n {{ .Release.Namespace }} delete gateways.gateway.networking.k8s.io {{ .Release.Name }}-eg-gw
