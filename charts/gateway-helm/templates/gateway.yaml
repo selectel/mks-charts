@@ -2,10 +2,10 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: eg-gw
+  name: '{{ .Release.Name }}-eg-gw'
   namespace: '{{ .Release.Namespace }}'
 spec:
-  gatewayClassName: eg
+  gatewayClassName: '{{ .Release.Name }}-eg'
   listeners:
     - name: http
       protocol: HTTP

@@ -2,7 +2,7 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: EnvoyProxy
 metadata:
-  name: custom-proxy-config
+  name: '{{ .Release.Name }}-custom-proxy-config'
   namespace: '{{ .Release.Namespace }}'
 spec:
   provider:
