@@ -67,6 +67,12 @@ spec:
                     - message: size invalid
                       rule: self >= 20
                 type: object
+              installNvidiaDevicePlugin:
+                description: |-
+                  InstallNvidiaDevicePlugin controls whether MKS installs the NVIDIA drivers and device
+                  plugin on nodes of a GPU flavor. Unset installs them; false leaves the node without
+                  both, so nvidia.com/gpu appears only once your own GPU stack is up.
+                type: boolean
               userData:
                 description: |-
                   UserData is applied to the provisioned nodes.
